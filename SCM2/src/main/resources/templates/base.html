@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="parent(content, title, script)" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title data-th-replace="${title}">Base</title>
+</head>
+<body class="dark">
+
+    <!--common header -->
+    <section data-th-replace="~{navbar :: navbar}"></section>
+
+
+    <h1>this is a base</h1>
+
+    <!-- Main content -->
+    <section data-th-replace="${content}"></section>
+
+    <!-- Page specific JS, non-html tag, we can use HTML tags (div, span, ...) -->
+    <th:block data-th-replace="${script}"></th:block>
+</body>
+</html>

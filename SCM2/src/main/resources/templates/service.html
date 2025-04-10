@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Page</title>
+</head>
+<body>
+    <div id="content">
+        welcome to service page
+    </div>
+
+    <script>
+        console.log('service page');
+    </script>
+
+    <!-- can pass multiple script using single para -->
+    <script>
+        console.log('service page');
+    </script>
+</body>
+</html>

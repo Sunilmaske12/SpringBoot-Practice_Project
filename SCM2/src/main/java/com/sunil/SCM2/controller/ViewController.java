@@ -11,5 +11,35 @@ public class ViewController {
 	public String test() {
 		return "test";
 	}
+	
+	@RequestMapping("/fragment1") 
+	public String base() {
+		return "fragementTest/fragment1";
+	}
+	
+	@RequestMapping("/child") 
+	public String child() {
+		return "fragementTest/child";
+	}
+	
+	@RequestMapping("/home") 
+	public String home() {
+		return "home";
+	}
+	
+	@RequestMapping("/service") 
+	public String service() {
+		return "service";
+	}
+	
+	@RequestMapping("/about") 
+	public String about() {
+		return "about";
+	}
+	
+	@RequestMapping("/index") 
+	public String index() {
+		return "index";
+	}
 
 }

@@ -3,6 +3,10 @@ package com.sunil.SCM2.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sunil.SCM2.DTO.UserForm;
+
+import org.springframework.ui.Model;
+
 @Controller
 @RequestMapping("/view")
 public class ViewController {
@@ -40,6 +44,12 @@ public class ViewController {
 	@RequestMapping("/index") 
 	public String index() {
 		return "index";
+	}
+	
+	@RequestMapping("/registerPage") 
+	public String registerPage(Model model) {
+		model.addAttribute("userForm", new UserForm());
+		return "register";
 	}
 
 }

@@ -3,6 +3,8 @@ package com.sunil.SCM2.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sunil.SCM2.enums.Providers;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

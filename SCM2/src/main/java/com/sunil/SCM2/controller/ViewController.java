@@ -46,6 +46,11 @@ public class ViewController {
 		return "index";
 	}
 	
+	@RequestMapping("/loginPage") 
+	public String login() {
+		return "login";
+	}
+	
 	@RequestMapping("/registerPage") 
 	public String registerPage(Model model) {
 		model.addAttribute("userForm", new UserForm());

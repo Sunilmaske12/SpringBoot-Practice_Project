@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>profile Page</title>
-</head>
-<body>
-    <div id="content">
-        welcome to profile page
-    </div>
+<html  th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
 
+<head>
+	<title>Profile page</title>
+</head>
+
+<body>
+	<div id="content">
+
+		<div class="grid grid-cols-12">
+  <div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+  <div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
     
+    <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Welcome to profile page</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">Start managing contacts here....</p>
+
+      
+    </div>
+  </div>
+</div>
+
+	</div>
+	
+	<script></script>
 </body>
+
 </html>

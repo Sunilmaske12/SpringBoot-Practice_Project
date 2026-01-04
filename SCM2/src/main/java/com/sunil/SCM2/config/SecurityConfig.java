@@ -4,6 +4,7 @@ package com.sunil.SCM2.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +17,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.sunil.SCM2.DTO.Message;
+import com.sunil.SCM2.enums.MessageType;
+
+import jakarta.servlet.http.HttpSession;
 
 @Configuration
 public class SecurityConfig {
@@ -69,6 +75,16 @@ public class SecurityConfig {
 			.failureForwardUrl("/view/loginPage?error=true")
 			.usernameParameter("email")
 			.passwordParameter("password");
+			
+			formLogin.failureHandler((request, response, exception) -> {
+				if(exception instanceof DisabledException) {
+					HttpSession session = request.getSession();
+					session.setAttribute("message", Message.builder().content("User is disabled").messageType(MessageType.red).build());
+					response.sendRedirect("/view/loginPage");
+				} else {
+					response.sendRedirect("/view/loginPage?error=true");
+				}
+			});
 		});
 		
 		httpSecurity.csrf(AbstractHttpConfigurer::disable); //need to disable to unable logout functionality
@@ -77,6 +93,8 @@ public class SecurityConfig {
 			logout.logoutUrl("/do-logout"); //default url /logout
 			logout.logoutSuccessUrl("/view/loginPage");
 		});
+		
+		
 		
 		return httpSecurity.build();
 	}

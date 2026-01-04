@@ -54,9 +54,7 @@ public class User implements UserDetails {
 	private String about;
 	private String profilePic;
 	private String phoneNumber;
-	
-	@Builder.Default
-	private boolean enabled = true;
+	private boolean enabled;
 	private boolean emailVerified;
 	private boolean phoneVerified;
 	

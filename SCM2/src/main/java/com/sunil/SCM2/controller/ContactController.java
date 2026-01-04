@@ -62,6 +62,8 @@ public class ContactController {
 		
 		
 		model.addAttribute("contactPage", contactPage);
+		model.addAttribute("searchBy", searchBy);
+		model.addAttribute("searchValue", searchValue);
 
 		return "/user/contactList";
 	}

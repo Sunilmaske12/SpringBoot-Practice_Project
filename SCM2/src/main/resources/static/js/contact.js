@@ -85,3 +85,12 @@ async function loadContactByID(contactID) {
 
 }
 
+function exportDataToExcel() {
+	TableToExcel.convert(document.getElementById("contactsTable"), {
+  name: "contactsTable.xlsx",
+  sheet: {
+    name: "Sheet 1"
+  }
+});
+}
+

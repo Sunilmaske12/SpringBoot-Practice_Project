@@ -18,7 +18,8 @@
 		<div class="contact_container p-10">
 
 
-			<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+			<div class="relative overflow-x-auto shadow-md sm:rounded-lg" >
+				<div style="display: flex; justify-content: space-between;">
 
 
 				<form th:action="@{list-pagination}" method="get"
@@ -45,9 +46,15 @@
 					</button>
 
 				</form>
+				
+				<div class="hidden w-full md:block md:w-auto" style="display: flex; align-items: center;">
+			<div onclick="exportDataToExcel()" style="padding-right: 20px;"
+				class=" button px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Export</div>
+		</div>
+		</div>
 
 
-				<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+				<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" >
 					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 						<tr>
 
@@ -121,6 +128,49 @@
 
 
 
+				<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" id="contactsTable" style="display: none;">
+					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+						<tr>
+
+							<th scope="col" class="px-6 py-3"  style="font-weight: bold;">
+								Name
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Phone
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Email
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Linken
+							</th>
+														<th scope="col" class="px-6 py-3">
+								Social Links
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+						<tr data-th-object="${c}" data-th-each="c : ${contactPage.getContent()}">
+
+							
+							<td> <span class="pl-2" data-th-text="*{name}"></span> </td>
+							<td> <span class="pl-2" data-th-text="*{phoneNumber}"></span> </td>
+							<td> <span class="pl-2" data-th-text="*{email}"></span> </td>
+							<td> <span class="pl-2" data-th-text="*{linkedInLink}"></span> </td>
+							<td> <span class="pl-2" data-th-text="*{websiteLink}"></span> </td>
+							
+							
+							
+						</tr>
+
+
+
+					</tbody>
+				</table>
+
+
 				<nav aria-label="Page navigation" th:if="${contactPage.totalPages > 1}"
 					style="padding: 10px;display: flex;justify-content: center;">
 					<ul class="flex -space-x-px text-sm">
@@ -166,6 +216,8 @@
 
 
 	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/@linways/table-to-excel@1.0.4/dist/tableToExcel.min.js"></script>
 	<script src="/js/contact.js"></script>
 
 

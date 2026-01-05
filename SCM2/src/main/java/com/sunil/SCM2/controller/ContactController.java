@@ -41,6 +41,7 @@ public class ContactController {
 	@GetMapping("/")
 	public String contactForm(Model model) {
 		model.addAttribute("contactForm", new ContactForm());
+		model.addAttribute("activePage", "contacts");
 		return "/user/contact";
 	}
 	
@@ -64,6 +65,7 @@ public class ContactController {
 		model.addAttribute("contactPage", contactPage);
 		model.addAttribute("searchBy", searchBy);
 		model.addAttribute("searchValue", searchValue);
+		model.addAttribute("activePage", "contacts");
 
 		return "/user/contactList";
 	}
@@ -76,6 +78,7 @@ public class ContactController {
 		List<Contact> contacts = contactService.getContacts(user);
 		System.out.println(contacts.size());
 		model.addAttribute("contactList", contacts);
+		model.addAttribute("activePage", "contacts");
 
 		return "/user/contactList";
 	}
@@ -90,7 +93,7 @@ public class ContactController {
 				System.out.println(err);
 			});
 
-			return "/user/contact";
+			return "redirect:/user/contact";
 		}
 
 		String userName = Helper.findUserNameByAuthentication(authentication);
@@ -144,7 +147,7 @@ public class ContactController {
 				System.out.println(err);
 			});
 
-			return "/user/contact";
+			return "redirect:/user/contact";
 		}
 		
 		Contact oldContact = contactService.getContactByID(contactID);

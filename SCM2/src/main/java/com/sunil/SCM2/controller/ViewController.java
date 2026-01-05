@@ -27,22 +27,26 @@ public class ViewController {
 	}
 	
 	@RequestMapping("/home") 
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("activePage", "home");
 		return "home";
 	}
 	
 	@RequestMapping("/service") 
-	public String service() {
+	public String service(Model model) {
+		model.addAttribute("activePage", "service");
 		return "service";
 	}
 	
 	@RequestMapping("/about") 
-	public String about() {
+	public String about(Model model) {
+		model.addAttribute("activePage", "about");
 		return "about";
 	}
 	
 	@RequestMapping("/index") 
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("activePage", "index");
 		return "index";
 	}
 	

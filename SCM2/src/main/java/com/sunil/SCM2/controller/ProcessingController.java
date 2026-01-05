@@ -25,6 +25,7 @@ public class ProcessingController {
 	public String doRegister(@ModelAttribute UserForm userForm, HttpSession session, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
+			
 			return "redirect:/view/registerPage";
 		}
 		
@@ -45,5 +46,7 @@ public class ProcessingController {
 				
 		return "redirect:/view/registerPage";
 	}
+	
+
 
 }

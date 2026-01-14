@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.sunil.SCM2.DTO.UserForm;
+import com.sunil.SCM2.exception.CustomException;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -74,7 +76,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserByEmailID(String email) {
-		return userRepo.findByEmail(email);
+		return userRepo.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not found with this email"));
+	}
+
+	@Override
+	public void validateUserRegistration(UserForm userForm) throws CustomException {
+
+		Optional<User> user = userRepo.findByEmail(userForm.getEmail());
+		if(user.isPresent()) {
+			throw new CustomException("User already exist with same email.");
+		}
+
+	}
+
+	@Override
+	public User getUserByEmailToken(String emailToken) {
+		return userRepo.findByEmailToken(emailToken);
 	}
 
 }

@@ -13,6 +13,7 @@ import com.sunil.SCM2.DTO.UserForm;
 import com.sunil.SCM2.entity.User;
 import com.sunil.SCM2.helpers.Helper;
 import com.sunil.SCM2.services.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
@@ -53,4 +54,6 @@ public class UserController {
 		model.addAttribute("activePage", "contactForm");
 		return "user/contact";
 	}
+
+
 }

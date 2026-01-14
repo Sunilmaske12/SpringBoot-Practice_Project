@@ -33,7 +33,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "USER")
+@Table(name = "users")
 public class User implements UserDetails {
 
 	/**
@@ -57,6 +57,7 @@ public class User implements UserDetails {
 	private boolean enabled;
 	private boolean emailVerified;
 	private boolean phoneVerified;
+	private String emailToken;
 	
 	@Builder.Default
 	private Providers provider = Providers.SELF;

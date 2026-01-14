@@ -5,9 +5,13 @@ import org.springframework.stereotype.Repository;
 
 import com.sunil.SCM2.entity.User;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepo extends JpaRepository<User, String>  {
-	
-	User findByEmail(String email);
+
+	Optional<User> findByEmail(String email);
+
+	User findByEmailToken(String emailToken);
 
 }

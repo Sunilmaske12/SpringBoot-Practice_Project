@@ -1,7 +1,11 @@
 package com.sunil.SCM2.controller;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.sunil.SCM2.DTO.Message;
+import com.sunil.SCM2.enums.MessageType;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
@@ -58,10 +62,7 @@ public class ContactController {
 		User user = userService.getUserByEmailID(userName);
 		Page<Contact> contactPage = contactService.getContacts(user, searchBy, searchValue, size, page);
 		System.out.println(contactPage.getNumber());
-		
-		
-		
-		
+
 		model.addAttribute("contactPage", contactPage);
 		model.addAttribute("searchBy", searchBy);
 		model.addAttribute("searchValue", searchValue);
@@ -84,7 +85,7 @@ public class ContactController {
 	}
 
 	@PostMapping("/add")
-	public String addContact(@Valid @ModelAttribute ContactForm contactForm, BindingResult result, Model model,
+	public String addContact(@Valid @ModelAttribute ContactForm contactForm, BindingResult result,  HttpSession session,
 			Authentication authentication) {
 
 		if (result.hasErrors()) {
@@ -93,7 +94,7 @@ public class ContactController {
 				System.out.println(err);
 			});
 
-			return "redirect:/user/contact";
+			return "/user/contact";
 		}
 
 		String userName = Helper.findUserNameByAuthentication(authentication);
@@ -106,6 +107,10 @@ public class ContactController {
 				contactForm.getWebsiteLink(), contactForm.getLinkedInLink(), user, null);
 
 		contactService.save(contact);
+
+
+		Message message = Message.builder().content("Contact added").messageType(MessageType.green).build();
+		session.setAttribute("message", message);
 
 		return "redirect:/user/contact/";
 	}
@@ -139,7 +144,7 @@ public class ContactController {
 
 	@PostMapping("/update/{contactID}")
 	public String updateContact(@PathVariable int contactID, @Valid @ModelAttribute ContactForm contactForm,
-			BindingResult result, Model model, Authentication authentication) {
+			BindingResult result, HttpSession session) {
 		
 		if (result.hasErrors()) {
 
@@ -167,6 +172,9 @@ public class ContactController {
 		oldContact.setWebsiteLink(contactForm.getWebsiteLink());
 		
 		contactService.save(oldContact);
+
+		Message message = Message.builder().content("Contact added").messageType(MessageType.green).build();
+		session.setAttribute("message", message);
 
 		return "redirect:/user/contact/";
 	}
